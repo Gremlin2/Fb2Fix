@@ -1,0 +1,6 @@
+# The programm processes the options passed to the fb2fix command last. 
+# Therefore, any option on the command line overrides the setting of the same option 
+# in the fb2fix.rsp file.
+#
+# If you do not want the programm to look for and use the settings from this file, 
+# specify /noconfig.

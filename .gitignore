@@ -1,6 +1,17 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
 bin
 obj
+.svn
 
 # mstest test results
 TestResults
+Fb2FixLib
+FB2FixLibTest
+FB2FixLibTests
+
+*.ReSharper
+*.ReSharper.user
+*.csproj.user
+*.suo
+localtestrun.testrunconfig
+FB2Fix.vsmdi
