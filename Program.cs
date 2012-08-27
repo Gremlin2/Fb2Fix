@@ -107,7 +107,7 @@ namespace FB2Fix
         public string[] excludeList;
 
         //[Argument(ArgumentType.AtMostOnce, HelpText = "Read data from the stdin and write result to stdout.", ShortName = "", LongName = "filter", DefaultValue = false)]
-        public bool filter;
+        //public bool filter;
 
         //[Argument(ArgumentType.AtMostOnce, HelpText = "Instructs the fb2fix not to auto include fb2fix.rsp file.", LongName = "noconfig", ShortName = "", DefaultValue = false)]
         //public bool noconfig;

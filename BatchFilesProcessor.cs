@@ -765,7 +765,6 @@ namespace FB2Fix
                         e.ContinueOperation = true;
                     };
 
-
                     while (archive.ReadHeader())
                     {
                         if (archive.CurrentFile != null)
@@ -846,9 +845,11 @@ namespace FB2Fix
                                     File.Delete(tempFilename);
                                 }
                             }
+                            else
+                            {
+                                archive.Skip();
+                            }
                         }
-
-                        archive.Skip();
                     }
                 }
             }
