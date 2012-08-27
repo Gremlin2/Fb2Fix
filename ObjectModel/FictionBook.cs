@@ -41,6 +41,8 @@ namespace FB2Fix.ObjectModel
 
         private XmlNode descriptionNode;
 
+        private List<CustomInfoNode> customInfos;
+
         private Fb2FixStatus documentStatus;
         private ModificationType modificationType;
         private DateTime containerDateTime;
@@ -229,6 +231,33 @@ namespace FB2Fix.ObjectModel
             if (this.descriptionNode == null)
             {
                 throw new InvalidFictionBookFormatException();
+            }
+
+            XmlNodeList nodes = document.SelectNodes("//FictionBook/description/custom-info");
+
+            customInfos = new List<CustomInfoNode>(nodes.Count);
+
+            foreach (XmlNode node in nodes)
+            {
+                if (node.NodeType == XmlNodeType.Element)
+                {
+                    CustomInfoNode item = new CustomInfoNode();
+                    item.Load((XmlElement) node);
+
+                    if (!String.IsNullOrEmpty(item.InfoType))
+                    {
+                        switch (item.InfoType)
+                        {
+                            case "fb2fix-status":
+                            case "librusec-id":
+                            case "previous-id":
+                                continue;
+                        }
+                    }
+
+                    item.XmlNode = node;
+                    customInfos.Add(item);
+                }
             }
 
             this.modificationType = ModificationType.None;
@@ -524,7 +553,29 @@ namespace FB2Fix.ObjectModel
                 XmlElement xmlNewPublishInfo = document.CreateElement("publish-info");
                 xmlNewPublishInfo = publishInfo.Store(document, xmlNewPublishInfo);
 
-                this.descriptionNode.ReplaceChild(xmlNewPublishInfo, publishInfoNode);
+                if (xmlNewPublishInfo != null)
+                {
+                    this.descriptionNode.ReplaceChild(xmlNewPublishInfo, publishInfoNode);
+                }
+                else
+                {
+                    this.descriptionNode.RemoveChild(publishInfoNode);
+                }
+            }
+
+            foreach (CustomInfoNode customInfoNode in customInfos)
+            {
+                XmlElement element = document.CreateElement("custom-info");
+                element = customInfoNode.Store(document, element);
+
+                if (element != null)
+                {
+                    this.descriptionNode.ReplaceChild(customInfoNode.XmlNode, element);
+                }
+                else
+                {
+                    this.descriptionNode.RemoveChild(customInfoNode.XmlNode);
+                }
             }
         }
     }

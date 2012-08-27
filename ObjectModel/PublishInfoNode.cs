@@ -145,6 +145,11 @@ namespace FB2Fix.ObjectModel
                 throw new ArgumentNullException("element");
             }
 
+            if (IsEmpty())
+            {
+                return null;
+            }
+
             if ((childElement = StoreElement(document, "book-name", this.bookName)) != null)
             {
                 element.AppendChild(childElement);
@@ -187,7 +192,8 @@ namespace FB2Fix.ObjectModel
 
         public override bool IsEmpty()
         {
-            return false;
+            return String.IsNullOrEmpty(bookName) && String.IsNullOrEmpty(publisher) && String.IsNullOrEmpty(city) &&
+                   String.IsNullOrEmpty(isbn) && year == null && sequences.Count == 0;
         }
     }
 }

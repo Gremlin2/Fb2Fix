@@ -75,6 +75,7 @@
     <Compile Include="Logging\TraceEventTypeFilter.cs" />
     <Compile Include="ObjectModel\AnnotationInfoNode.cs" />
     <Compile Include="ObjectModel\AuthorInfoNode.cs" />
+    <Compile Include="ObjectModel\CustomInfoNode.cs" />
     <Compile Include="ObjectModel\DateTimeNode.cs" />
     <Compile Include="ObjectModel\FictionBook.cs" />
     <Compile Include="ObjectModel\DocumentInfoNode.cs" />

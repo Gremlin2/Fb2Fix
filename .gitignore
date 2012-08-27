@@ -8,6 +8,7 @@ TestResults
 Fb2FixLib
 FB2FixLibTest
 FB2FixLibTests
+_ReSharper.*
 
 *.ReSharper
 *.ReSharper.user
@@ -15,3 +16,4 @@ FB2FixLibTests
 *.suo
 localtestrun.testrunconfig
 FB2Fix.vsmdi
+*.DotSettings.user
