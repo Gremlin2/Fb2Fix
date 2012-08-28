@@ -121,10 +121,12 @@ namespace FB2Fix.ObjectModel
             this.middleName = LoadElement(parentNode, "./middle-name");
             this.lastName = LoadRequiredElement(parentNode, "./last-name");
             this.nickName = LoadRequiredElement(parentNode, "./nickname");
-			this.id = LoadElement(parentNode, "./id");
-			this.homepage = LoadElementsList(parentNode, "./home-page");
+			
+            this.homepage = LoadElementsList(parentNode, "./home-page");
 			this.email = LoadElementsList(parentNode, "./email");
-		}
+        
+            this.id = LoadElement(parentNode, "./id");
+        }
 
 	    public override XmlElement Store(XmlDocument document, XmlElement element)
 	    {
@@ -160,11 +162,6 @@ namespace FB2Fix.ObjectModel
                 element.AppendChild(childElement);
             }
 
-            if ((childElement = StoreElement(document, "id", this.id)) != null)
-            {
-                element.AppendChild(childElement);
-            }
-
 	        foreach (string value in this.homepage)
 	        {
                 if ((childElement = StoreElement(document, "home-page", value)) != null)
@@ -179,6 +176,11 @@ namespace FB2Fix.ObjectModel
                 {
                     element.AppendChild(childElement);
                 }
+            }
+
+            if ((childElement = StoreElement(document, "id", this.id)) != null)
+            {
+                element.AppendChild(childElement);
             }
 
             if(element.ChildNodes.Count == 0)

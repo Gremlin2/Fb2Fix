@@ -154,7 +154,7 @@ namespace FB2Fix
                 //    }
                 //}
 
-                if(arguments.files.Length == 0 && arguments.filter == false)
+                if (arguments.files.Length == 0)
                 {
                     PrintUsageInfo();
                     Environment.Exit(1);
